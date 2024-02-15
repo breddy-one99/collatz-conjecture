@@ -1,21 +1,4 @@
-import networkx as nx
 import matplotlib.pyplot as plt
-
-class GraphVisualization:
-
-    def __init__(self):
-
-        self.visual = []
-
-    def addEdge(self, a, b):
-        temp = [a, b]
-        self.visual.append(temp)
-
-    def visualize(self):
-        G = nx.Graph()
-        G.add_edges_from(self.visual)
-        nx.draw_networkx(G)
-        plt.show()
 
 def collatz(n):
     if n % 2 == 0:
@@ -23,7 +6,8 @@ def collatz(n):
     else:
         return int((3*n + 1)/2)
 
-G = GraphVisualization()
+xlist = []
+ylist = []
 
 num = input("Enter a number:")
 num = int(num)
@@ -33,6 +17,9 @@ b = int(num)
 while b != 1:
     a = b
     b = collatz(b)
-    G.addEdge(a, b)
+    xlist.append(a)
+    ylist.append(b)
 
-G.visualize() 
+plt.figure(num=0, dpi = 150)
+plt.plot(xlist,ylist)
+plt.show()
